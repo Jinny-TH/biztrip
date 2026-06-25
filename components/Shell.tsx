@@ -1,36 +1,19 @@
 import Link from 'next/link';
+import { BarChart3, CalendarDays, ClipboardCheck, FileText, Hotel, Plane, Settings, UserRound, UsersRound, LayoutDashboard, BriefcaseBusiness } from 'lucide-react';
 
 const nav = [
-  ['대시보드', '/', '⌂'],
-  ['출장 목록', '/trips', '▤'],
-  ['캘린더', '/calendar', '▦'],
-  ['일정 Import', '/import', '⇧'],
-  ['승인 관리', '/approvals', '✓'],
-  ['출장자 관리', '/travelers', '◉'],
-  ['항공 관리', '/flights', '✈'],
-  ['호텔 관리', '/hotels', '▣'],
-  ['보고서', '/reports', '◷'],
-  ['설정', '/settings', '⚙'],
-];
+  ['대시보드','/dashboard',LayoutDashboard], ['출장 목록','/trips',BriefcaseBusiness], ['캘린더','/calendar',CalendarDays], ['항공 관리','/flights',Plane], ['호텔 관리','/hotels',Hotel], ['출장자 관리','/travelers',UsersRound], ['승인 관리','/approvals',ClipboardCheck], ['보고서','/reports',FileText], ['설정','/settings',Settings]
+] as const;
 
-export default function Shell({ children, title = '경영진 출장 일정 관리' }: { children: React.ReactNode; title?: string }) {
-  return (
-    <div className="shell">
-      <aside className="sidebar">
-        <Link className="brand" href="/">
-          <span className="brand-icon">✈</span>
-          <b>BizTrip<br /><small>Executive Manager</small></b>
-        </Link>
-        <nav>{nav.map(([label, href, icon]) => <Link key={href} href={href}><span>{icon}</span>{label}</Link>)}</nav>
-        <div className="side-bottom"><span>🌐 한국어</span><small>v0.2 Phase 1 UI</small></div>
-      </aside>
-      <main className="main">
-        <header className="topbar">
-          <div><p className="eyebrow">Executive Business Trip Manager</p><h1>{title}</h1></div>
-          <div className="top-actions"><button className="ghost">+ 출장 등록</button><div className="user"><span className="alarm">3</span><b>김담당</b><small>관리자</small></div></div>
-        </header>
-        <div className="content">{children}</div>
-      </main>
-    </div>
-  );
+export default function Shell({ children, active = '/dashboard' }: { children: React.ReactNode; active?: string }) {
+  return <div className="layout">
+    <aside className="sidebar">
+      <Link href="/dashboard" className="brand"><span className="brandIcon"><BriefcaseBusiness size={22}/></span><span>BizTrip<br/><span className="muted" style={{fontSize:12,fontWeight:700}}>Executive Manager</span></span></Link>
+      <nav className="nav">{nav.map(([label, href, Icon]) => <Link key={href} href={href} className={active===href?'active':''}><Icon size={19}/>{label}</Link>)}</nav>
+    </aside>
+    <main className="main">
+      <header className="topbar"><input className="search" placeholder="출장명, 국가, 참석자 검색"/><div className="user"><UserRound size={20}/><div className="avatar">J</div><div><b>Jinny</b><div className="muted" style={{fontSize:12}}>관리자</div></div></div></header>
+      <section className="content">{children}</section>
+    </main>
+  </div>;
 }

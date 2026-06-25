@@ -1,11 +1,8 @@
 import Shell from '@/components/Shell';
 import PageHeader from '@/components/PageHeader';
-import StatusBadge from '@/components/StatusBadge';
-import { approvals } from '@/lib/data';
 
-export default function ApprovalsPage() {
-  const lanes = ['대기', '검토중', '완료'];
-  return <Shell title="승인 관리"><PageHeader title="승인 관리" desc="출장 신청, 일정 변경, 비용/항공/호텔 승인 요청을 관리합니다." />
-    <div className="kanban">{lanes.map(lane => <div className="lane" key={lane}><h3>{lane}</h3>{approvals.filter(a => a.status === lane || (lane === '완료' && false)).map(a => <div className="mini-card" key={a.id}><b>{a.title}</b><p>{a.desc}</p><p>요청자: {a.requester} · 기한: {a.due}</p><StatusBadge>{a.status}</StatusBadge><br /><br /><button>승인</button> <button className="ghost">반려</button></div>)}</div>)}</div>
-  </Shell>;
+export default function Page(){
+  const map:any = { travelers:['출장자 관리','임원, 동행자, 담당자 정보를 관리합니다.'], approvals:['승인 관리','출장 신청과 변경 요청을 승인합니다.'], reports:['보고서','출장 일정표와 PDF/Excel 보고서를 생성합니다.'], settings:['설정','권한, 알림, 다국어 설정을 관리합니다.'] };
+  const [title, sub] = map['approvals'];
+  return <Shell active="/approvals"><PageHeader title={title} sub={sub}/><div className="card cardPad"><h2>Sprint 1 기본 화면</h2><p className="muted">다음 Sprint에서 Supabase 데이터와 입력/수정 기능을 연결합니다.</p><button className="btn">기능 추가 예정</button></div></Shell>;
 }

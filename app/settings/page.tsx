@@ -1,4 +1,8 @@
 import Shell from '@/components/Shell';
 import PageHeader from '@/components/PageHeader';
 
-export default function SettingsPage(){return <Shell title="설정"><PageHeader title="설정" desc="권한, 언어, 알림, Supabase 연결 정보를 관리합니다."/><div className="grid two-one"><div className="card"><h2>권한 그룹</h2><p className="row"><b>관리자</b><span>전체 등록/수정/삭제</span></p><p className="row"><b>담당자</b><span>출장/일정 등록 및 수정</span></p><p className="row"><b>임원</b><span>본인 일정 조회</span></p><p className="row"><b>조회 전용</b><span>읽기 권한</span></p></div><div className="card"><h2>환경변수</h2><div className="field"><label>NEXT_PUBLIC_SUPABASE_URL</label><input placeholder="2차 단계에서 입력" /></div><br/><div className="field"><label>NEXT_PUBLIC_SUPABASE_ANON_KEY</label><input placeholder="2차 단계에서 입력" /></div></div></div></Shell>}
+export default function Page(){
+  const map:any = { travelers:['출장자 관리','임원, 동행자, 담당자 정보를 관리합니다.'], approvals:['승인 관리','출장 신청과 변경 요청을 승인합니다.'], reports:['보고서','출장 일정표와 PDF/Excel 보고서를 생성합니다.'], settings:['설정','권한, 알림, 다국어 설정을 관리합니다.'] };
+  const [title, sub] = map['settings'];
+  return <Shell active="/settings"><PageHeader title={title} sub={sub}/><div className="card cardPad"><h2>Sprint 1 기본 화면</h2><p className="muted">다음 Sprint에서 Supabase 데이터와 입력/수정 기능을 연결합니다.</p><button className="btn">기능 추가 예정</button></div></Shell>;
+}

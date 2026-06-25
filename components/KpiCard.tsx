@@ -1,3 +1,3 @@
-export default function KpiCard({ icon, label, value, hint }: { icon: string; label: string; value: string | number; hint: string }) {
-  return <div className="kpi"><span className="kpi-icon">{icon}</span><div><p>{label}</p><strong>{value}</strong><small>{hint}</small></div></div>;
+export default function KpiCard({ title, value, sub, icon }: { title:string; value:string|number; sub:string; icon:React.ReactNode }) {
+ return <div className="card cardPad"><div className="kpi"><div className="kpiIcon">{icon}</div><div><div className="muted" style={{fontWeight:700}}>{title}</div><div className="kpiValue">{value}</div><div className="muted">{sub}</div></div></div></div>;
 }

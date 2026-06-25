@@ -1,6 +1,3 @@
 import Shell from '@/components/Shell';
 import PageHeader from '@/components/PageHeader';
-import StatusBadge from '@/components/StatusBadge';
-import { hotels } from '@/lib/data';
-
-export default function HotelsPage(){return <Shell title="호텔 관리"><PageHeader title="호텔 관리" desc="호텔 예약, 체크인/체크아웃, 주소와 지도 링크를 관리합니다." action="+ 호텔 등록"/><div className="grid two-one"><div className="card"><h2>호텔 예약</h2>{hotels.map(h=><div className="mini-card" key={h.id}><h3>{h.name}</h3><p>체크인: {h.checkIn}</p><p>체크아웃: {h.checkOut}</p><p>주소: {h.address}</p><StatusBadge>{h.status}</StatusBadge></div>)}</div><div className="card"><h2>지도 영역</h2><div className="mapbox">Google Maps 연동 예정</div></div></div></Shell>}
+export default function HotelsPage(){ return <Shell active="/hotels"><PageHeader title="호텔 관리" sub="체크인/체크아웃과 주소를 관리합니다." action={<button className="btn">+ 호텔 추가</button>}/><div className="grid2"><div className="card cardPad"><h2>Millennium Hilton Bangkok</h2><p className="muted">Bangkok, Thailand</p><p><b>체크인</b> 2026-07-02</p><p><b>체크아웃</b> 2026-07-13</p><button className="btn secondary">지도 보기</button></div><div className="card cardPad"><h2>호텔 등록</h2><div className="form"><div className="field span2"><label>호텔명</label><input/></div><div className="field span2"><label>주소</label><input/></div><div className="field"><label>체크인</label><input type="date"/></div><div className="field"><label>체크아웃</label><input type="date"/></div></div></div></div></Shell> }

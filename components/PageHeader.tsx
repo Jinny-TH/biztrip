@@ -1,3 +1,5 @@
-export default function PageHeader({ title, desc, action }: { title: string; desc?: string; action?: string }) {
-  return <div className="page-header"><div><h2>{title}</h2>{desc && <p>{desc}</p>}</div>{action && <button>{action}</button>}</div>;
+export default function PageHeader({ title, sub, action }: { title: string; sub?: string; action?: React.ReactNode }) {
+  return <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:16,marginBottom:22}}>
+    <div><h1 className="pageTitle">{title}</h1>{sub && <p className="pageSub">{sub}</p>}</div>{action}
+  </div>;
 }

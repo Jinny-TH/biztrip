@@ -1,14 +1,11 @@
 import Shell from '@/components/Shell';
 import PageHeader from '@/components/PageHeader';
-import StatusBadge from '@/components/StatusBadge';
-import { schedules } from '@/lib/data';
+import { schedules } from '@/lib/mock';
 
-const days = Array.from({ length: 31 }, (_, i) => i + 1);
-const dows = ['월','화','수','목','금','토','일'];
-
-export default function CalendarPage() {
-  return <Shell title="캘린더">
-    <PageHeader title="2026년 7월 출장 캘린더" desc="날짜별 출장 일정, 행사, 항공 일정을 색상으로 확인합니다." action="+ 일정 추가" />
-    <div className="card"><div className="calendar">{dows.map(d => <div className="dow" key={d}>{d}</div>)}{days.map(day => { const items = schedules.filter(s => Number(s.date.slice(-2)) === day); return <div className={items.length ? 'day active' : 'day'} key={day}><b>{day}</b>{items.slice(0,4).map(i => <small key={i.id}>{i.start} <StatusBadge>{i.type}</StatusBadge> {i.title}</small>)}</div>; })}</div></div>
-  </Shell>;
+export default function CalendarPage(){
+ const days = Array.from({length:31},(_,i)=>i+1);
+ const has = (d:number)=>schedules.filter(s=>Number(s.schedule_date.slice(-2))===d);
+ return <Shell active="/calendar"><PageHeader title="캘린더" sub="월간 출장 일정과 주요 이벤트를 확인합니다." />
+  <div className="card"><div className="cardHead"><b>2026년 7월</b><div className="muted">Thailand 출장</div></div><div className="calendar">{['월','화','수','목','금','토','일'].map(x=><div className="day" style={{minHeight:44,fontWeight:800}} key={x}>{x}</div>)}{days.map(d=><div className={`day ${d===10?'on':''}`} key={d}><b>{d}</b>{has(d).map(e=><span className="pill" key={e.id}>{e.start_time} {e.title}</span>)}</div>)}</div></div>
+ </Shell>
 }

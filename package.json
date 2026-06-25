@@ -1,6 +1,6 @@
 {
-  "name": "biztrip-executive-trip-manager",
-  "version": "0.2.0",
+  "name": "biztrip-sprint1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,13 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "typescript": "latest"
+    "@supabase/supabase-js": "^2.50.0",
+    "lucide-react": "^0.468.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "recharts": "^2.15.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.0.0",
+    "typescript": "^5.7.0"
+  }
 }

@@ -1,6 +1,4 @@
-import { ScheduleItem } from '@/lib/data';
-import StatusBadge from './StatusBadge';
-
-export default function Timeline({ items }: { items: ScheduleItem[] }) {
-  return <div className="timeline">{items.map((s) => <div className="timeitem" key={s.id}><b>{s.start}</b><div><strong>{s.title}</strong><p>{s.location || s.owner || '-'}{s.memo ? ` · ${s.memo}` : ''}</p></div><StatusBadge>{s.type}</StatusBadge></div>)}</div>;
+import type { Schedule } from '@/types';
+export default function Timeline({ items }: { items: Schedule[] }) {
+ return <div className="timeline">{items.map(i => <div className="timeRow" key={i.id}><div className="time">{i.start_time}</div><div className="eventLine"><span className="dot"/><div><b>{i.title}</b><div className="muted">장소: {i.location || '-'}</div></div></div></div>)}</div>;
 }
